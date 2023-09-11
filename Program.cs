@@ -1,5 +1,6 @@
 using LaEscalonia.Models;
 using LaEscalonia.Repository;
+using LaEscalonia.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,6 +20,7 @@ builder.Services.AddDbContext<EscaloniaContext>(options =>
 
 });
 builder.Services.AddTransient(typeof(IRepositoryAsync<>),typeof(RepositoryAsync<>));
+builder.Services.AddTransient<IUserService,UserService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
