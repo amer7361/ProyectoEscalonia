@@ -2,7 +2,6 @@
 using LaEscalonia.Models.Request;
 using LaEscalonia.Models.Response;
 using LaEscalonia.Repository;
-
 namespace LaEscalonia.Services
 {
     public class UserService : IUserService

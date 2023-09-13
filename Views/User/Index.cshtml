@@ -80,7 +80,7 @@
                             var Usuario = row.username;
                             var rol = row.roles; // Asumiendo que tienes una propiedad 'rol' en tus datos
 
-                            var modifyButton = "<a class='btn btn-primary btn-sm' href='@Url.Content("~/Usuarios/Modificar/")" + idUsuario + "'><i class='bi bi-pencil-square'></i></a> &nbsp;";
+                            var modifyButton = "<a class='btn btn-primary btn-sm' href='@Url.Content("~/User/Modificar/")" + idUsuario + "'><i class='bi bi-pencil-square'></i></a> &nbsp;";
                             
 
                             return modifyButton +
@@ -108,7 +108,7 @@
             }).then((result) => {
                 if (result.isConfirmed) {
 
-                    var url = '@Url.Content("~/Usuarios/Delete/")' + idUsuario;
+                    var url = '@Url.Content("~/User/Delete/")' + idUsuario;
                     $.post(url, idUsuario).done(function (data) {
                         if (data.success) {
                             Swal.fire(
