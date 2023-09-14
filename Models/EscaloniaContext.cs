@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using LaEscalonia.Models.Request;
 using Microsoft.EntityFrameworkCore;
 
 namespace LaEscalonia.Models;
@@ -26,9 +27,11 @@ public partial class EscaloniaContext : DbContext
     public virtual DbSet<Role> Roles { get; set; }
 
     public virtual DbSet<Usuario> Usuarios { get; set; }
+    public virtual DbSet<UserRequest> UserRequest { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<UserRequest>(x=>x.HasNoKey());
         modelBuilder.Entity<Configuracione>(entity =>
         {
             entity.HasKey(e => e.idConfiguracion);

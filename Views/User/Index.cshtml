@@ -19,12 +19,14 @@
         </button>
     </div>
 }
-
-<div class="container">
+<br />
+<div class="container card  p-5 text-align-center">
+    <h1>@ViewData["Title"]</h1>
+    <hr />
 <p>
-    <a class="btn btn-primary" asp-action="Create" asp-controller="Usuarios">Crear Usuario</a>
+    <a class="btn btn-primary" asp-action="Create" asp-controller="User">Crear Usuario</a>
 </p>
-<table class="display responsive table table-striped" style="width:100%" id="myTable">
+<table class="display responsive table table-bordered" style="width:100%" id="myTable">
     <thead>
         <tr>
             <th>Username</th>
@@ -40,6 +42,7 @@
     </tbody>
 </table>
 </div>
+<br />
 @section Scripts{
 
     <script>
@@ -80,7 +83,7 @@
                             var Usuario = row.username;
                             var rol = row.roles; // Asumiendo que tienes una propiedad 'rol' en tus datos
 
-                            var modifyButton = "<a class='btn btn-primary btn-sm' href='@Url.Content("~/User/Modificar/")" + idUsuario + "'><i class='bi bi-pencil-square'></i></a> &nbsp;";
+                            var modifyButton = "<a class='btn btn-primary btn-sm' href='@Url.Content("~/User/Modify/")" + idUsuario + "'><i class='bi bi-pencil-square'></i></a> &nbsp;";
                             
 
                             return modifyButton +

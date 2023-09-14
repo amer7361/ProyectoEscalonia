@@ -9,7 +9,9 @@ namespace LaEscalonia.Services
         Task<UserResponse> IngresoUsuario(UserRequest model);
         Task<UserResponse> ModificacionUsuario(UserRequest model);
         Task<Usuario> GetByID(int id);
+        Task<bool> VerifyUsername(string username);
         Task<IEnumerable<UserList>> ListarUsuarios();
         Task<Usuario> DeleteUser(int id);
+        Task<UserRequest> GetUser(int id);
     }
 }

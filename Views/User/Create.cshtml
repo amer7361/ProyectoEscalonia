@@ -1,0 +1,76 @@
+﻿@model LaEscalonia.Models.Request.UserRequest
+
+@{
+    ViewData["Title"] = "Crear Nuevo Usuario";
+    List<SelectListItem> roles = (List<SelectListItem>)ViewData["ListadoRoles"];
+}
+<br />
+<div class="container card py-3">
+<h1>@ViewData["Title"]</h1>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Create" asp-controller="User" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row">
+                    <div class="col-lg-6">
+            <div class="form-group">
+                <label asp-for="nombres" class="control-label"></label>
+                <input asp-for="nombres" class="form-control" />
+                <span asp-validation-for="nombres" class="text-danger"></span>
+            </div>
+                    </div>
+                        <div class="col-lg-6">
+            <div class="form-group">
+                <label asp-for="apellidos" class="control-label"></label>
+                <input asp-for="apellidos" class="form-control" />
+                <span asp-validation-for="apellidos" class="text-danger"></span>
+            </div>
+            </div>
+                    </div>
+                <div class="row">
+                    <div class="col-lg-6">
+            <div class="form-group">
+                <label asp-for="telefono" class="control-label"></label>
+                <input asp-for="telefono" class="form-control" />
+                <span asp-validation-for="telefono" class="text-danger"></span>
+            </div>
+                    </div>
+                    <div class="col-lg-6">
+            <div class="form-group">
+                <label asp-for="email" class="control-label"></label>
+                <input asp-for="email" class="form-control" />
+                <span asp-validation-for="email" class="text-danger"></span>
+                        </div>
+                    </div>
+            <div class="form-group">
+                <label asp-for="username" class="control-label"></label>
+                <input asp-for="username" class="form-control" />
+                <span asp-validation-for="username" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="password" class="control-label"></label>
+                <input asp-for="password" class="form-control" />
+                <span asp-validation-for="password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="idRol" class="control-label"></label>
+                <select asp-for="idRol" asp-items="roles" class="form-select">
+                    <option disabled selected>---Seleccione un rol---</option>
+                </select>
+                <span asp-validation-for="idRol" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

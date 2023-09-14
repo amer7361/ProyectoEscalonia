@@ -30,6 +30,28 @@ namespace LaEscalonia.Services
             return await _userRepository.GetByID(id);
         }
 
+        public async Task<UserRequest> GetUser(int id)
+        {
+            var oUser = await _userRepository.GetWithInlcudes(u => u.idUsuario == id,
+                              u => u.idEmpleadoNavigation);
+            if (oUser == null)
+            {
+                return new UserRequest();
+            }
+            return new UserRequest()
+            {
+                idUsuario = oUser.idUsuario,
+                nombres = oUser.idEmpleadoNavigation.nombres,
+                apellidos = oUser.idEmpleadoNavigation.apellidos,
+                email = oUser.idEmpleadoNavigation.email,
+                telefono = oUser.idEmpleadoNavigation.telefono,
+                username = oUser.username,
+                password = oUser.password,
+                idRol = oUser.idRol
+            };
+
+        }
+
         public async Task<UserResponse> IngresoUsuario(UserRequest model)
         {
             var oEmpleado=await _empleadosRepository.Insert(new Empleado()
@@ -93,6 +115,7 @@ namespace LaEscalonia.Services
             });
             await _userRepository.Update(new Usuario()
             {
+                idUsuario = model.idUsuario,
                 idEmpleado = user.idEmpleadoNavigation.idEmpleado,
                 idRol = model.idRol,
                 username = model.username,
@@ -104,6 +127,19 @@ namespace LaEscalonia.Services
                 message = "Usuario creado correctamente",
                 user = model
             };
+        }
+
+        public async Task<bool> VerifyUsername(string username)
+        {
+            var oUser=await _userRepository.Find(u=>u.username.Equals(username));
+            if(oUser == null) 
+            { 
+                return false;
+            }
+            else 
+            {
+                return true;
+            }
         }
     }
 }
